@@ -5,9 +5,9 @@ from typing import TYPE_CHECKING
 from pykraken import Sprite
 
 if TYPE_CHECKING:
-    from pykraken import Texture
+    from pykraken import AnimationController
 
 
 class Player(Sprite):
-    def __init__(self, texture: Texture) -> None:
-        super().__init__(texture)
+    def __init__(self, animation: AnimationController) -> None:
+        super().__init__()
