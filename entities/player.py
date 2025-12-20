@@ -12,6 +12,7 @@ if TYPE_CHECKING:
 
 class PlayerStates(StrEnum):
     IDLE = auto()
+    RUNNING = auto()
 
 
 class Player:
@@ -31,6 +32,7 @@ class Player:
         self.animation: AnimationController = animation
         self.current_state: PlayerStates = current_state
         self.position: Vec2 = position or Vec2()
+        self.flip: bool = False
 
         self.speed: int = 200
         self.direction: Vec2 = Vec2()
@@ -45,13 +47,19 @@ class Player:
 
         if any(kn.key.is_pressed(key) for key in self.LEFT):
             self.direction.x = -1
+            self.flip = True
         elif any(kn.key.is_pressed(key) for key in self.RIGHT):
             self.direction.x = 1
+            self.flip = False
+
         else:
             self.direction.x = 0
 
         if self.direction.length != 0:
+            self.animation.set(PlayerStates.RUNNING)
             self.direction.normalize()
+        else:
+            self.animation.set(PlayerStates.IDLE)
 
         x_magnitude = self.direction.x * self.speed * dt
         y_magnitude = self.direction.y * self.speed * dt

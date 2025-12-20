@@ -1,6 +1,6 @@
 from pykraken import AnimationController, SheetStrip, Vec2
 
-from core.constants import ASSET_SOLDIER
+from core.constants import ASSET_SOLDIER, PLAYER_ANIMATION_FPS
 from entities.player import Player, PlayerStates
 from states.meta.base_state import BaseState
 from states.meta.state_enums import StateEnum
@@ -8,7 +8,10 @@ from states.meta.state_enums import StateEnum
 
 class LoaderState(BaseState, state_name=StateEnum.LOADER):
     def _load_player(self) -> None:
-        sprite_sheet: list[SheetStrip] = [SheetStrip(PlayerStates.IDLE, 6, 2)]
+        sprite_sheet: list[SheetStrip] = [
+            SheetStrip(PlayerStates.IDLE, 6, PLAYER_ANIMATION_FPS),
+            SheetStrip(PlayerStates.RUNNING, 8, PLAYER_ANIMATION_FPS),
+        ]
 
         player_animation = AnimationController()
         player_animation.load_sprite_sheet(
