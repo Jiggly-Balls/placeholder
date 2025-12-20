@@ -7,27 +7,29 @@ from states.meta import BaseManager, BaseState, LoaderState, StateEnum
 
 
 def main() -> None:
+    kn.init()
+    kn.window.create(GAME_TITLE, Vec2(WINDOW_WIDTH, WINDOW_HEIGHT))
+
     manager = BaseManager(
-        post_init_state=StateEnum.LOADER,
+        post_init_state=StateEnum.GAME,
         bound_state_type=BaseState,
     )
     manager.load_states(LoaderState, GameState)
-    manager.change_state(StateEnum.GAME)
+    manager.change_state(StateEnum.LOADER)
 
     assert manager.current_state
-
-    kn.init()
-    kn.window.create(GAME_TITLE, Vec2(WINDOW_WIDTH, WINDOW_HEIGHT))
 
     while kn.window.is_open():
         kn.renderer.clear(kn.color.PURPLE)
         dt = kn.time.get_delta()
 
         for event in kn.event.poll():
-            manager.current_state.process_event(event)
+            manager.current_state.process_event(event, dt)
         manager.current_state.process_update(dt)
 
         kn.renderer.present()
+
+    kn.quit()
 
 
 if __name__ == "__main__":
