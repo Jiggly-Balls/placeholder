@@ -1,23 +1,15 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
-
 import pykraken as kn
 
 from entities.player import PlayerStates
 from states.meta import BaseState, StateEnum
-
-if TYPE_CHECKING:
-    from pykraken import Event
 
 
 class GameState(BaseState, state_name=StateEnum.GAME):
     def on_enter(self, previous_state: None | BaseState) -> None:
         self.player.animation.set(PlayerStates.IDLE)
         self.player.animation.play(PlayerStates.IDLE)
-
-    def process_event(self, event: Event, dt: float) -> None:
-        self.player.process_event(event)
 
     def process_update(self, dt: float) -> None:
         self.player.process_update(dt)

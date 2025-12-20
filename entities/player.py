@@ -7,7 +7,7 @@ import pykraken as kn
 from pykraken import Vec2
 
 if TYPE_CHECKING:
-    from pykraken import AnimationController, Event, Scancode
+    from pykraken import AnimationController, Scancode
 
 
 class PlayerStates(StrEnum):
@@ -35,7 +35,7 @@ class Player:
         self.speed: int = 200
         self.direction: Vec2 = Vec2()
 
-    def process_event(self, _: Event) -> None:
+    def movement(self, dt: float) -> None:
         if any(kn.key.is_pressed(key) for key in self.UP):
             self.direction.y = -1
         elif any(kn.key.is_pressed(key) for key in self.DOWN):
@@ -53,7 +53,9 @@ class Player:
         if self.direction.length != 0:
             self.direction.normalize()
 
-    def process_update(self, dt: float) -> None:
         x_magnitude = self.direction.x * self.speed * dt
         y_magnitude = self.direction.y * self.speed * dt
         self.position += kn.Vec2(x_magnitude, y_magnitude)
+
+    def process_update(self, dt: float) -> None:
+        self.movement(dt)
