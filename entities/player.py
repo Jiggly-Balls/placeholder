@@ -35,24 +35,20 @@ class Player:
         self.speed: int = 200
         self.direction: Vec2 = Vec2()
 
-    def process_event(self, event: Event) -> None:
-        if event.type == kn.KEY_DOWN:
-            if event.scan in self.UP:
-                self.direction.y = -1
-            elif event.scan in self.DOWN:
-                self.direction.y = 1
+    def process_event(self, _: Event) -> None:
+        if any(kn.key.is_pressed(key) for key in self.UP):
+            self.direction.y = -1
+        elif any(kn.key.is_pressed(key) for key in self.DOWN):
+            self.direction.y = 1
+        else:
+            self.direction.y = 0
 
-            if event.scan in self.LEFT:
-                self.direction.x = -1
-            elif event.scan in self.RIGHT:
-                self.direction.x = 1
-
-        elif event.type == kn.KEY_UP:
-            if event.scan in self.UP or event.scan in self.DOWN:
-                self.direction.y = 0
-
-            if event.scan in self.LEFT or event.scan in self.RIGHT:
-                self.direction.x = 0
+        if any(kn.key.is_pressed(key) for key in self.LEFT):
+            self.direction.x = -1
+        elif any(kn.key.is_pressed(key) for key in self.RIGHT):
+            self.direction.x = 1
+        else:
+            self.direction.x = 0
 
         if self.direction.length != 0:
             self.direction.normalize()
