@@ -46,7 +46,8 @@ class Player:
         )
 
     def change_animation(self, state: PlayerStates) -> None:
-        self.animation[state].play(state)
+        self.current_state = state
+        self.animation[state].set(state)
 
     def movement(self, dt: float) -> None:
         if any(kn.key.is_pressed(key) for key in self.UP):
