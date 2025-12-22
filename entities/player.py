@@ -6,7 +6,15 @@ from typing import TYPE_CHECKING
 import pykraken as kn
 
 if TYPE_CHECKING:
-    from pykraken import AnimationController, Rect, Scancode, Texture, Vec2
+    from typing import TypedDict
+
+    from pykraken import AnimationController, Scancode, Texture, Vec2
+
+    from core.animator import Animator
+
+    class ControllerData(TypedDict):
+        controller: AnimationController
+        texture: Texture
 
 
 class PlayerStates(StrEnum):
@@ -23,31 +31,19 @@ class Player:
 
     def __init__(
         self,
-        animation: dict[PlayerStates, AnimationController],
+        animator: Animator,
         current_state: PlayerStates,
         position: None | Vec2 = None,
     ) -> None:
         super().__init__()
 
-        self.animation: dict[PlayerStates, AnimationController] = animation
+        self.animator: Animator = animator
         self.current_state: PlayerStates = current_state
         self.position: Vec2 = position or kn.Vec2()
 
         self.flip: bool = False
         self.speed: int = 200
         self.direction: Vec2 = kn.Vec2()
-
-    def get_animation(self) -> tuple[Texture, Rect]:
-        self.animation[self.current_state].texture.flip.h = self.flip
-
-        return (
-            self.animation[self.current_state].texture,
-            self.animation[self.current_state].clip,
-        )
-
-    def change_animation(self, state: PlayerStates) -> None:
-        self.current_state = state
-        self.animation[state].set(state)
 
     def movement(self, dt: float) -> None:
         if any(kn.key.is_pressed(key) for key in self.UP):
@@ -67,10 +63,10 @@ class Player:
             self.direction.x = 0
 
         if self.direction.length != 0:
-            self.change_animation(PlayerStates.RUNNING)
+            self.animator.change_animation(PlayerStates.RUNNING)
             self.direction.normalize()
         else:
-            self.change_animation(PlayerStates.IDLE)
+            self.animator.change_animation(PlayerStates.IDLE)
 
         x_magnitude = self.direction.x * self.speed * dt
         y_magnitude = self.direction.y * self.speed * dt

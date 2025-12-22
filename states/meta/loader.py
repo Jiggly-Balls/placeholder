@@ -1,9 +1,15 @@
 from __future__ import annotations
 
+from enum import StrEnum
 from typing import TYPE_CHECKING
 
-from pykraken import AnimationController, SheetStrip, Vec2
+from pykraken import (
+    Texture,
+    TextureScaleMode,
+    Vec2,
+)
 
+from core.animator import Animator
 from core.constants import (
     ASSET_HUMAN_IDLE,
     ASSET_HUMAN_RUNNING,
@@ -15,43 +21,37 @@ from states.meta.base_state import BaseState
 from states.meta.state_enums import StateEnum
 
 if TYPE_CHECKING:
-    from typing import TypedDict
-
-    class AnimationData(TypedDict):
-        frames: int
-        path: str
+    from core.types import AnimationData
 
 
 class LoaderState(BaseState, state_name=StateEnum.LOADER):
-    def __init__(self) -> None:
-        self.player_animation_data: dict[PlayerStates, AnimationData] = {
+    def _fetch_asset(self, path: str) -> Texture:
+        return Texture(path, TextureScaleMode.PIXEL_ART)
+
+    def _load_player(self) -> None:
+        animation_data: dict[StrEnum, AnimationData] = {
             PlayerStates.IDLE: {
+                "texture": self._fetch_asset(ASSET_HUMAN_IDLE),
                 "frames": 9,
-                "path": ASSET_HUMAN_IDLE,
             },
             PlayerStates.WALKING: {
+                "texture": self._fetch_asset(ASSET_HUMAN_WALKING),
                 "frames": 8,
-                "path": ASSET_HUMAN_WALKING,
             },
             PlayerStates.RUNNING: {
+                "texture": self._fetch_asset(ASSET_HUMAN_RUNNING),
                 "frames": 8,
-                "path": ASSET_HUMAN_RUNNING,
             },
         }
 
-    def _load_player(self) -> None:
-        player_animations: dict[PlayerStates, AnimationController] = {}
+        animator = Animator(
+            animation_data,
+            PlayerStates.IDLE,
+            Vec2(96, 64),
+            PLAYER_ANIMATION_FPS,
+        )
 
-        for state, state_data in self.player_animation_data.items():
-            player_animations[state] = AnimationController()
-            sheet = (
-                SheetStrip(state, state_data["frames"], PLAYER_ANIMATION_FPS),
-            )
-            player_animations[state].load_sprite_sheet(
-                state_data["path"], Vec2(96, 64), sheet
-            )
-
-        BaseState.player = Player(player_animations, PlayerStates.IDLE)
+        BaseState.player = Player(animator, PlayerStates.IDLE)
 
     def on_enter(self, previous_state: None | BaseState) -> None:
         self._load_player()
