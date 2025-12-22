@@ -5,6 +5,8 @@ from typing import TYPE_CHECKING
 
 import pykraken as kn
 
+from core.bindings import MovementBinding
+
 if TYPE_CHECKING:
     from typing import TypedDict
 
@@ -46,30 +48,25 @@ class Player:
         self.direction: Vec2 = kn.Vec2()
 
     def movement(self, dt: float) -> None:
-        if any(kn.key.is_pressed(key) for key in self.UP):
-            self.direction.y = -1
-        elif any(kn.key.is_pressed(key) for key in self.DOWN):
-            self.direction.y = 1
-        else:
-            self.direction.y = 0
-
-        if any(kn.key.is_pressed(key) for key in self.LEFT):
-            self.direction.x = -1
+        direction_vec = kn.input.get_direction(
+            up=MovementBinding.UP.name,
+            right=MovementBinding.RIGHT.name,
+            down=MovementBinding.DOWN.name,
+            left=MovementBinding.LEFT.name,
+        )
+        if direction_vec.x < 0:
             self.flip = True
-        elif any(kn.key.is_pressed(key) for key in self.RIGHT):
-            self.direction.x = 1
+        elif direction_vec.x > 0:
             self.flip = False
-        else:
-            self.direction.x = 0
 
-        if self.direction.length != 0:
+        if direction_vec.length != 0:
             self.animator.change_animation(PlayerStates.RUNNING)
-            self.direction.normalize()
+            direction_vec.normalize()
         else:
             self.animator.change_animation(PlayerStates.IDLE)
 
-        x_magnitude = self.direction.x * self.speed * dt
-        y_magnitude = self.direction.y * self.speed * dt
+        x_magnitude = direction_vec.x * self.speed * dt
+        y_magnitude = direction_vec.y * self.speed * dt
         self.position += kn.Vec2(x_magnitude, y_magnitude)
 
     def process_update(self, dt: float) -> None:
