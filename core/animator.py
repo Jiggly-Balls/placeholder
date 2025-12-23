@@ -31,28 +31,28 @@ class Animator:
         frame_size: Vec2,
         speed: int,
     ) -> None:
-        self.controllers: dict[StrEnum, ControllerData] = {}
+        self._controllers: dict[StrEnum, ControllerData] = {}
         self.current_state: StrEnum = current_state
 
         for state, state_data in texture_map.items():
-            self.controllers[state] = {}  # pyright: ignore[reportArgumentType]
-            self.controllers[state]["controller"] = kn.AnimationController()
-            self.controllers[state]["texture"] = state_data["texture"]
+            self._controllers[state] = {}  # pyright: ignore[reportArgumentType]
+            self._controllers[state]["controller"] = kn.AnimationController()
+            self._controllers[state]["texture"] = state_data["texture"]
 
-            self.controllers[state]["controller"].load_sprite_sheet(
+            self._controllers[state]["controller"].load_sprite_sheet(
                 frame_size,
                 (kn.SheetStrip(state, state_data["frames"], speed),),
             )
 
     def change_animation(self, state: StrEnum) -> None:
         self.current_state = state
-        self.controllers[state]["controller"].set(state)
+        self._controllers[state]["controller"].set(state)
 
     def get_frame(
         self, h_flip: bool = False, v_flip: bool = False
     ) -> tuple[Texture, Rect]:
-        controller = self.controllers[self.current_state]["controller"]
-        texture = self.controllers[self.current_state]["texture"]
+        controller = self._controllers[self.current_state]["controller"]
+        texture = self._controllers[self.current_state]["texture"]
         texture.flip.h = h_flip
         texture.flip.v = v_flip
 
@@ -71,35 +71,29 @@ class PlayerCosmeticAnimator:
         self.current_hair: PlayerHair = current_hair
         self.current_state: PlayerStates = current_state
 
-        self.data: dict[
-            PlayerStates, dict[PlayerHair, tuple[Texture, int]]
-        ] = data
-        self.animation_data: dict[
+        self._animation_data: dict[
             PlayerStates, dict[PlayerHair, tuple[AnimationController, Texture]]
         ] = {}
 
         for state, state_data in data.items():
-            self.animation_data[state] = {}
+            self._animation_data[state] = {}
             for hair, (texture, frames) in state_data.items():
                 sheet = kn.SheetStrip(state, frames, speed)
                 controller = kn.AnimationController()
                 controller.load_sprite_sheet(size, (sheet,))
 
-                # self.animation_data[state].setdefault(hair, {})
-                self.animation_data[state][hair] = (controller, texture)
-
-        # pprint(self.animation_data)
+                self._animation_data[state][hair] = (controller, texture)
 
     def change_animation(self, state: PlayerStates) -> None:
         self.current_state = state
-        self.animation_data[state][self.current_hair][0].set(self.current_hair)
+        self._animation_data[state][self.current_hair][0].set(self.current_hair)
 
     def get_frame(
         self, h_flip: bool = False, v_flip: bool = False
     ) -> tuple[Texture, Rect]:
         # fmt: off
-        controller = self.animation_data[self.current_state][self.current_hair][0]
-        texture = self.animation_data[self.current_state][self.current_hair][1]
+        controller = self._animation_data[self.current_state][self.current_hair][0]
+        texture = self._animation_data[self.current_state][self.current_hair][1]
         # fmt: on
 
         texture.flip.h = h_flip
