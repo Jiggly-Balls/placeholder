@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 
 import pykraken as kn
 
-from core.bindings import MovementBinding
+from core.player_data import MovementBinding
 
 if TYPE_CHECKING:
     from typing import TypedDict

@@ -12,7 +12,7 @@ from pykraken import (
 )
 
 from core.animator import Animator
-from core.bindings import MovementBinding
+from core.player_data import MovementBinding
 from core.constants import (
     ASSET_HUMAN_IDLE,
     ASSET_HUMAN_RUNNING,

@@ -58,3 +58,7 @@ class Animator:
         texture.flip.v = v_flip
 
         return (texture, controller.clip)
+
+
+class PlayerAnimator(Animator):
+    ...
