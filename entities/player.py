@@ -1,11 +1,10 @@
 from __future__ import annotations
 
-from enum import StrEnum, auto
 from typing import TYPE_CHECKING
 
 import pykraken as kn
 
-from core.player_data import MovementBinding
+from core.player_data import MovementBinding, PlayerStates
 
 if TYPE_CHECKING:
     from typing import TypedDict
@@ -17,12 +16,6 @@ if TYPE_CHECKING:
     class ControllerData(TypedDict):
         controller: AnimationController
         texture: Texture
-
-
-class PlayerStates(StrEnum):
-    IDLE = auto()
-    WALKING = auto()
-    RUNNING = auto()
 
 
 class Player:

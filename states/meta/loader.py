@@ -12,13 +12,13 @@ from pykraken import (
 )
 
 from core.animator import Animator
-from core.player_data import MovementBinding
 from core.constants import (
     ASSET_HUMAN_IDLE,
     ASSET_HUMAN_RUNNING,
     ASSET_HUMAN_WALKING,
     PLAYER_ANIMATION_FPS,
 )
+from core.player_data import MovementBinding
 from entities.player import Player, PlayerStates
 from states.meta.base_state import BaseState
 from states.meta.state_enums import StateEnum

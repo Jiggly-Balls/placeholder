@@ -60,5 +60,4 @@ class Animator:
         return (texture, controller.clip)
 
 
-class PlayerAnimator(Animator):
-    ...
+class PlayerAnimator(Animator): ...

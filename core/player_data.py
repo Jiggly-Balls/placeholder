@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import Enum, StrEnum, auto
 
 import pykraken as kn
 
@@ -9,3 +9,9 @@ class MovementBinding(Enum):
     LEFT = [kn.S_a, kn.S_LEFT]
     RIGHT = [kn.S_d, kn.S_RIGHT]
     RUN = [kn.S_LSHIFT]
+
+
+class PlayerStates(StrEnum):
+    IDLE = auto()
+    WALKING = auto()
+    RUNNING = auto()
