@@ -8,3 +8,4 @@ class MovementBinding(Enum):
     DOWN = [kn.S_s, kn.S_DOWN]
     LEFT = [kn.S_a, kn.S_LEFT]
     RIGHT = [kn.S_d, kn.S_RIGHT]
+    RUN = [kn.S_LSHIFT]

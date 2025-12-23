@@ -37,17 +37,16 @@ class Player:
         current_state: PlayerStates,
         position: None | Vec2 = None,
     ) -> None:
-        super().__init__()
-
         self.animator: Animator = animator
         self.current_state: PlayerStates = current_state
         self.position: Vec2 = position or kn.Vec2()
 
         self.flip: bool = False
-        self.speed: int = 200
-        self.direction: Vec2 = kn.Vec2()
+        self.walking_speed: int = 200
+        self.running_speed: int = 350
 
     def movement(self, dt: float) -> None:
+        speed = 0
         direction_vec = kn.input.get_direction(
             up=MovementBinding.UP.name,
             right=MovementBinding.RIGHT.name,
@@ -60,13 +59,18 @@ class Player:
             self.flip = False
 
         if direction_vec.length != 0:
-            self.animator.change_animation(PlayerStates.RUNNING)
+            if kn.input.is_pressed(MovementBinding.RUN.name):
+                self.animator.change_animation(PlayerStates.RUNNING)
+                speed = self.running_speed
+            else:
+                self.animator.change_animation(PlayerStates.WALKING)
+                speed = self.walking_speed
             direction_vec.normalize()
         else:
             self.animator.change_animation(PlayerStates.IDLE)
 
-        x_magnitude = direction_vec.x * self.speed * dt
-        y_magnitude = direction_vec.y * self.speed * dt
+        x_magnitude = direction_vec.x * speed * dt
+        y_magnitude = direction_vec.y * speed * dt
         self.position += kn.Vec2(x_magnitude, y_magnitude)
 
     def process_update(self, dt: float) -> None:
