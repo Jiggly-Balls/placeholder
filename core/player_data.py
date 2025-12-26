@@ -23,7 +23,7 @@ class PlayerStates(StrEnum):
     RUN = "run"
 
     @staticmethod
-    def frames(state: PlayerStates) -> int:
+    def get_frames(state: PlayerStates) -> int:
         player_state_frames: dict[PlayerStates, int] = {
             PlayerStates.IDLE: 9,
             PlayerStates.WALK: 8,

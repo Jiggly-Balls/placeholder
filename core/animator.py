@@ -15,7 +15,8 @@ if TYPE_CHECKING:
 
     class ControllerData(TypedDict, closed=True):
         controller: AnimationController
-        texture: Texture
+        base_texture: Texture
+        tool_texture: Texture
 
 
 __all__ = ("Animator",)
@@ -37,7 +38,12 @@ class Animator:
         for state, state_data in texture_map.items():
             self._controllers[state] = {}  # pyright: ignore[reportArgumentType]
             self._controllers[state]["controller"] = kn.AnimationController()
-            self._controllers[state]["texture"] = state_data["texture"]
+            self._controllers[state]["base_texture"] = state_data[
+                "base_texture"
+            ]
+            self._controllers[state]["tool_texture"] = state_data[
+                "tool_texture"
+            ]
 
             self._controllers[state]["controller"].load_sprite_sheet(
                 frame_size,
@@ -48,11 +54,21 @@ class Animator:
         self.current_state = state
         self._controllers[state]["controller"].set(state)
 
-    def get_frame(
+    def get_base_frame(
         self, h_flip: bool = False, v_flip: bool = False
     ) -> tuple[Texture, Rect]:
         controller = self._controllers[self.current_state]["controller"]
-        texture = self._controllers[self.current_state]["texture"]
+        texture = self._controllers[self.current_state]["base_texture"]
+        texture.flip.h = h_flip
+        texture.flip.v = v_flip
+
+        return (texture, controller.clip)
+
+    def get_tool_frame(
+        self, h_flip: bool = False, v_flip: bool = False
+    ) -> tuple[Texture, Rect]:
+        controller = self._controllers[self.current_state]["controller"]
+        texture = self._controllers[self.current_state]["tool_texture"]
         texture.flip.h = h_flip
         texture.flip.v = v_flip
 

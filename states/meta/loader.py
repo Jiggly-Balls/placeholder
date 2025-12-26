@@ -14,9 +14,6 @@ from pykraken import (
 from core.animator import Animator, PlayerCosmeticAnimator
 from core.constants import (
     ASSET_HUMAN_BASE_DIR,
-    ASSET_HUMAN_IDLE,
-    ASSET_HUMAN_RUN,
-    ASSET_HUMAN_WALK,
     PLAYER_ANIMATION_FPS,
 )
 from core.player_data import MovementBinding, PlayerHair, PlayerStates
@@ -33,26 +30,13 @@ class LoaderState(BaseState, state_name=StateEnum.LOADER):
         return Texture(path, TextureScaleMode.PIXEL_ART)
 
     def _load_player(self) -> None:
-        animation_data: dict[StrEnum, AnimationData] = {
-            PlayerStates.IDLE: {
-                "texture": self._fetch_asset(ASSET_HUMAN_IDLE),
-                "frames": 9,
-            },
-            PlayerStates.WALK: {
-                "texture": self._fetch_asset(ASSET_HUMAN_WALK),
-                "frames": 8,
-            },
-            PlayerStates.RUN: {
-                "texture": self._fetch_asset(ASSET_HUMAN_RUN),
-                "frames": 8,
-            },
-        }
-
+        animation_data: dict[StrEnum, AnimationData] = {}
         cosmetic_data: dict[
             PlayerStates, dict[PlayerHair, tuple[Texture, int]]
         ] = {}
 
         for state in PlayerStates:
+            # Load hair assets-
             cosmetic_data[state] = {}
             for hair in PlayerHair:
                 path: str = (
@@ -62,8 +46,22 @@ class LoaderState(BaseState, state_name=StateEnum.LOADER):
                 )
                 cosmetic_data[state][hair] = (
                     self._fetch_asset(path),
-                    PlayerStates.frames(state),
+                    PlayerStates.get_frames(state),
                 )
+
+            # Load base player & tool assets-
+            animation_data[state] = {}  # pyright: ignore[reportArgumentType]
+            animation_data[state]["base_texture"] = self._fetch_asset(
+                ASSET_HUMAN_BASE_DIR
+                + state.upper()
+                + f"/base_{state.lower()}_strip.png"
+            )
+            animation_data[state]["tool_texture"] = self._fetch_asset(
+                ASSET_HUMAN_BASE_DIR
+                + state.upper()
+                + f"/tools_{state.lower()}_strip.png"
+            )
+            animation_data[state]["frames"] = PlayerStates.get_frames(state)
 
         animator = Animator(
             animation_data,

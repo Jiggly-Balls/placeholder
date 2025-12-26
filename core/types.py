@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 __all__ = ("AnimationData",)
 
 
-class AnimationData(TypedDict):
+class AnimationData(TypedDict, closed=True):
     frames: int
-    texture: Texture
+    base_texture: Texture
+    tool_texture: Texture

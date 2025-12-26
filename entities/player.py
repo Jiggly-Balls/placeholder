@@ -81,7 +81,11 @@ class Player:
         self.change_hair()
 
     def process_render(self) -> None:
-        player_texture, player_clip = self.animator.get_frame(self.flip)
+        player_texture, player_clip = self.animator.get_base_frame(self.flip)
+
+        player_tool_texture, player_tool_clip = self.animator.get_tool_frame(
+            self.flip
+        )
 
         player_hair_texture, player_hair_clip = (
             self.cosmetic_animator.get_frame(self.flip)
@@ -92,7 +96,11 @@ class Player:
             kn.Transform(self.position, size=PLAYER_TARGET_RES),
             src=player_clip,
         )
-
+        kn.renderer.draw(
+            player_tool_texture,
+            kn.Transform(self.position, size=PLAYER_TARGET_RES),
+            src=player_tool_clip,
+        )
         kn.renderer.draw(
             player_hair_texture,
             kn.Transform(self.position, size=PLAYER_TARGET_RES),
