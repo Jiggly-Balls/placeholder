@@ -34,15 +34,15 @@ wheels = [
 
 [[package]]
 name = "kraken-engine"
-version = "1.5.0"
+version = "1.4.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4a/d5/e2dcfb7b9131953efeb5570f72bb4778ccf65b043b615e3fc9237d641a72/kraken_engine-1.5.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:133b6608cd150baff4e378fd437d3a3b5cf7d7ec112e9e5d933f63aeafdb0ee5", size = 3600317, upload-time = "2026-01-01T15:31:21.017Z" },
-    { url = "https://files.pythonhosted.org/packages/80/fe/7aa79971f706c64ccb3dec2a8df96adb985427c77f4305c2a99a161a68f7/kraken_engine-1.5.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ac1274332bbd60972d695e3c72d22fd76cce887b98b99951599189bac79d5359", size = 4966230, upload-time = "2026-01-01T15:31:22.975Z" },
-    { url = "https://files.pythonhosted.org/packages/4b/e1/2138a800b6d2d717d1acd5b3c25b239f4cbd236c7b9a923cb43abef98e25/kraken_engine-1.5.0-cp312-cp312-win_amd64.whl", hash = "sha256:b7412b3ef6ed3ea8218f894902c4a82ff2d98f3cb4cf90e23b1203012f468275", size = 3855170, upload-time = "2026-01-01T15:31:24.343Z" },
+    { url = "https://files.pythonhosted.org/packages/ed/aa/067ca5593495c6a96d0ecf085ef065480baf4e5a541176eb5d491e6395b4/kraken_engine-1.4.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:99a53ff261e587eb66cb498ab9612ed61734cb83ce6bcf5bc994d7df28331c9e", size = 2960679, upload-time = "2025-12-22T05:24:49.925Z" },
+    { url = "https://files.pythonhosted.org/packages/19/c5/0cc847ee6b14b4e02073c0928d846be69177e73bcbb635d086308129ecdc/kraken_engine-1.4.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:05c5816a6255e5078ef10f9a261d24ce68c7c9c4bf8bfb0cf059fecde8da960f", size = 4205390, upload-time = "2025-12-22T05:24:51.525Z" },
+    { url = "https://files.pythonhosted.org/packages/e0/31/cfeb630363d724124cbca6cb0e34d74b7ff2ff0b441ddf3dd1db5c0e2317/kraken_engine-1.4.2-cp312-cp312-win_amd64.whl", hash = "sha256:0c789d74aa8c25f5ee248954c6467bd9e8941817d50e0a5eea2347c48aaa3068", size = 2881918, upload-time = "2025-12-22T05:24:53.242Z" },
 ]
 
 [[package]]
@@ -80,7 +80,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "game-state", specifier = ">=2.3.0" },
-    { name = "kraken-engine", specifier = ">=1.4.1" },
+    { name = "kraken-engine", specifier = "==1.4.2" },
     { name = "pytmx", specifier = ">=3.32" },
 ]
 
