@@ -10,17 +10,12 @@ from core.player_data import MovementBinding, PlayerHair, PlayerStates
 from entities.base_entity import BaseEntity
 
 if TYPE_CHECKING:
-    from pykraken import Scancode, Vec2
+    from pykraken import Vec2
 
     from core.animator import Animator, PlayerCosmeticAnimator
 
 
 class Player(BaseEntity):
-    UP: tuple[Scancode, Scancode] = (kn.S_w, kn.S_UP)
-    DOWN: tuple[Scancode, Scancode] = (kn.S_s, kn.S_DOWN)
-    RIGHT: tuple[Scancode, Scancode] = (kn.S_d, kn.S_RIGHT)
-    LEFT: tuple[Scancode, Scancode] = (kn.S_a, kn.S_LEFT)
-
     def __init__(
         self,
         animator: Animator,
