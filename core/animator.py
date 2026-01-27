@@ -47,7 +47,9 @@ class Animator:
 
             self._controllers[state]["controller"].load_sprite_sheet(
                 frame_size,
-                (kn.SheetStrip(state, state_data["frames"], speed),),
+                kn.SheetStripList(
+                    (kn.SheetStrip(state, state_data["frames"], speed),)
+                ),
             )
 
     def change_animation(self, state: StrEnum) -> None:
@@ -96,7 +98,9 @@ class PlayerCosmeticAnimator:
             for hair, (texture, frames) in state_data.items():
                 sheet = kn.SheetStrip(state, frames, speed)
                 controller = kn.AnimationController()
-                controller.load_sprite_sheet(size, (sheet,))
+                controller.load_sprite_sheet(
+                    size, (kn.SheetStripList((sheet,)))
+                )
 
                 self._animation_data[state][hair] = (controller, texture)
 

@@ -34,21 +34,21 @@ wheels = [
 
 [[package]]
 name = "kraken-engine"
-version = "1.4.2"
+version = "1.5.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pydantic" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/ed/aa/067ca5593495c6a96d0ecf085ef065480baf4e5a541176eb5d491e6395b4/kraken_engine-1.4.2-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:99a53ff261e587eb66cb498ab9612ed61734cb83ce6bcf5bc994d7df28331c9e", size = 2960679, upload-time = "2025-12-22T05:24:49.925Z" },
-    { url = "https://files.pythonhosted.org/packages/19/c5/0cc847ee6b14b4e02073c0928d846be69177e73bcbb635d086308129ecdc/kraken_engine-1.4.2-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:05c5816a6255e5078ef10f9a261d24ce68c7c9c4bf8bfb0cf059fecde8da960f", size = 4205390, upload-time = "2025-12-22T05:24:51.525Z" },
-    { url = "https://files.pythonhosted.org/packages/e0/31/cfeb630363d724124cbca6cb0e34d74b7ff2ff0b441ddf3dd1db5c0e2317/kraken_engine-1.4.2-cp312-cp312-win_amd64.whl", hash = "sha256:0c789d74aa8c25f5ee248954c6467bd9e8941817d50e0a5eea2347c48aaa3068", size = 2881918, upload-time = "2025-12-22T05:24:53.242Z" },
-    { url = "https://files.pythonhosted.org/packages/bf/1c/d01615a41f747a134bc17e2ac9df4a8b7172770a47c69858d3e524632bbf/kraken_engine-1.4.2-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:bd1eb4efea940ec1e874ead693bc5e566efc4224977f04cd4449ca60f6ac4337", size = 2960591, upload-time = "2025-12-22T05:24:54.977Z" },
-    { url = "https://files.pythonhosted.org/packages/0e/f2/96a065166a131ef7e301e1907a9bd6ac7065a06ac8b50f3eba7469864a39/kraken_engine-1.4.2-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:b00e912ef20377da9ffa7f551b77b976c32f1545f00e71703201ef568322e570", size = 4205776, upload-time = "2025-12-22T05:24:56.687Z" },
-    { url = "https://files.pythonhosted.org/packages/84/8f/4e1d53b1e12aef98feeb0836e3e90b490e4951c5f86af1dfa5dfff73288b/kraken_engine-1.4.2-cp313-cp313-win_amd64.whl", hash = "sha256:501d6e24c259346e33638012b7a29ea4b9150072a2bd9c8b837816c1f27d0755", size = 2881917, upload-time = "2025-12-22T05:24:58.094Z" },
-    { url = "https://files.pythonhosted.org/packages/fc/02/11c095d2458d504a65e0c9c8b04dd7e954a29292ed142786e2c8046bce34/kraken_engine-1.4.2-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:fcd5efe8afb9f3ffa7365ba38db65eadcb40a11dc1591fc2df1d6c4f77be8d92", size = 2962365, upload-time = "2025-12-22T05:24:59.519Z" },
-    { url = "https://files.pythonhosted.org/packages/3e/e3/ebb39a6811deaa82e1cf5fcf3496b34f39fa761b84e7418c646f9bb33fe8/kraken_engine-1.4.2-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:dab4d8fc39b1238d9c4ce65e2facd5dc5d485a6eaac7a7727dd20b94d5eca6c8", size = 4206458, upload-time = "2025-12-22T05:25:00.948Z" },
-    { url = "https://files.pythonhosted.org/packages/6d/16/1c9b993becc751e9952a408fe248842b42d2f496d4547233c744a8b5e4b7/kraken_engine-1.4.2-cp314-cp314-win_amd64.whl", hash = "sha256:daa5ac7c6bf1ed6842a168ccb3a604e0006baa4165eba9cc99015c68faf49d6d", size = 2979078, upload-time = "2025-12-22T05:25:02.434Z" },
+    { url = "https://files.pythonhosted.org/packages/4a/d5/e2dcfb7b9131953efeb5570f72bb4778ccf65b043b615e3fc9237d641a72/kraken_engine-1.5.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:133b6608cd150baff4e378fd437d3a3b5cf7d7ec112e9e5d933f63aeafdb0ee5", size = 3600317, upload-time = "2026-01-01T15:31:21.017Z" },
+    { url = "https://files.pythonhosted.org/packages/80/fe/7aa79971f706c64ccb3dec2a8df96adb985427c77f4305c2a99a161a68f7/kraken_engine-1.5.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:ac1274332bbd60972d695e3c72d22fd76cce887b98b99951599189bac79d5359", size = 4966230, upload-time = "2026-01-01T15:31:22.975Z" },
+    { url = "https://files.pythonhosted.org/packages/4b/e1/2138a800b6d2d717d1acd5b3c25b239f4cbd236c7b9a923cb43abef98e25/kraken_engine-1.5.0-cp312-cp312-win_amd64.whl", hash = "sha256:b7412b3ef6ed3ea8218f894902c4a82ff2d98f3cb4cf90e23b1203012f468275", size = 3855170, upload-time = "2026-01-01T15:31:24.343Z" },
+    { url = "https://files.pythonhosted.org/packages/1c/72/0950d1c1bb00bf3d8e6254cb0e591d48c2611e82352b98c55c422853adab/kraken_engine-1.5.0-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:fd25e85de02cb67ca9840883124dd70c5ee488b40ee7e9cad9c96717f8f9f525", size = 3600273, upload-time = "2026-01-01T15:31:26.044Z" },
+    { url = "https://files.pythonhosted.org/packages/96/88/7475b2ef6423de980a6773675c79832b473d3d1e5df169379c458ea03a77/kraken_engine-1.5.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:40f7828b1d172605ad9d31d2af581af1236aa9c754a042afdcefa92ff88be3a7", size = 4966251, upload-time = "2026-01-01T15:31:27.448Z" },
+    { url = "https://files.pythonhosted.org/packages/08/43/94e80ac632c7aeb8a7182844795b8cb36291a07650249fd7e7f1c1b3faa6/kraken_engine-1.5.0-cp313-cp313-win_amd64.whl", hash = "sha256:fd08072ba2b36286d461ec5dc3ceb923c505e06d7c6cb5308a2248c4e47041eb", size = 3855217, upload-time = "2026-01-01T15:31:28.862Z" },
+    { url = "https://files.pythonhosted.org/packages/29/c2/1672a3f74cbad86136d901a647b655a2a6c599e1045913912f00e122db13/kraken_engine-1.5.0-cp314-cp314-macosx_11_0_arm64.whl", hash = "sha256:596d146e11627e5e121701bcfd9e43bb3c1fb533ac8b4c83992ee1d66e882097", size = 3603105, upload-time = "2026-01-01T15:31:30.626Z" },
+    { url = "https://files.pythonhosted.org/packages/e9/c4/3c4767eb34af366305ba318edbf4f849d0ef4bf8b43a511efc2152b33aac/kraken_engine-1.5.0-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", hash = "sha256:51c6e9ab957b909667a9595bbc444f1e31cec0fdf67ad51225874c092b3fc2b1", size = 4968782, upload-time = "2026-01-01T15:31:32.5Z" },
+    { url = "https://files.pythonhosted.org/packages/c3/87/e84dd692387e2cd5ac80b2f7e01c698c1ed0cae452866c6bea8724f7c8df/kraken_engine-1.5.0-cp314-cp314-win_amd64.whl", hash = "sha256:f084050739804d77d968dceaa0da2d7f26cb738f5dbd3c7c37ed61a0408ccc22", size = 3969676, upload-time = "2026-01-01T15:31:34.127Z" },
 ]
 
 [[package]]
@@ -69,7 +69,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "game-state", specifier = ">=2.3.0" },
-    { name = "kraken-engine", specifier = "==1.4.2" },
+    { name = "kraken-engine", specifier = ">=1.5.0" },
 ]
 
 [package.metadata.requires-dev]

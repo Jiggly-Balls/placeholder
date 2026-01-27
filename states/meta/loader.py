@@ -88,7 +88,8 @@ class LoaderState(BaseState, state_name=StateEnum.LOADER):
             actions: list[InputAction] = [
                 InputAction(binding) for binding in player_bindings.value
             ]
-            kn.input.bind(player_bindings.name, actions)
+
+            kn.input.bind(player_bindings.name, kn.InputActionList(actions))
 
     def on_enter(self, previous_state: None | BaseState) -> None:
         self._load_player()
